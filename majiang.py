@@ -98,9 +98,16 @@ cardlist2_b[l5.key] = l5.value
 l8 = ListCard()
 l8.setcard(8, 2)
 cardlist2_b[l8.key] = l8.value
+# 2张牌=>风
+cardlist2_f = {}
+for i in range(1, 8):
+	l2 = ListCard()
+	l2.setcard(i, 2)
+	cardlist2_f[l2.key] = l2.value
 
 # 3张牌=>无
 cardlist3_n = {}
+cardlist3_f = {}
 for i in range(1, 10):
 	l3 = ListCard()
 	l3.setcard(i, 3)
@@ -111,8 +118,16 @@ for i in range(1, 8):
 	l3.setcard(i, 1)
 	l3.setcard(i + 1, 1)
 	l3.setcard(i + 2, 1)
-	l3.value = 1
+	if i == 4:
+		l3.value = 100
+	else:
+		l3.value = 1
 	cardlist3_n[l3.key] = l3.value
+for i in range(1, 8):
+	l3 = ListCard()
+	l3.setcard(i, 3)
+	l3.value = 0
+	cardlist3_f[l3.key] = l3.value
 
 # 5张牌=>大
 cardlist5_a = {}
@@ -126,6 +141,10 @@ for k1, v1 in cardlist2_a.items():
 				cardlist5_a[l5.key] = l5.value
 			else:
 				cardlist5_a[l5.key] *= l5.value
+				if cardlist5_a[l5.key] >= 100:
+					cardlist5_a[l5.key] = 100
+				elif cardlist5_a[l5.key] > 0:
+					cardlist5_a[l5.key] = 1
 # 5张牌=>小
 cardlist5_b = {}
 for k1, v1 in cardlist2_b.items():
@@ -138,6 +157,23 @@ for k1, v1 in cardlist2_b.items():
 				cardlist5_b[l5.key] = l5.value
 			else:
 				cardlist5_b[l5.key] *= l5.value
+				if cardlist5_b[l5.key] > 0:
+					cardlist5_b[l5.key] = 1
+# 5张牌=>风
+cardlist5_f = {}
+for k1, v1 in cardlist2_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist3_f.items():
+		c2 = ListCard(k2, v2)
+		l5 = ListCard()
+		if l5.plus(c1, c2) == True:
+			if l5.key not in cardlist5_f:
+				cardlist5_f[l5.key] = l5.value
+			else:
+				cardlist5_f[l5.key] *= l5.value
+				if cardlist5_f[l5.key] > 0:
+					cardlist5_f[l5.key] = 1
+
 
 # 6张牌=>无
 cardlist6_n = {}
@@ -151,6 +187,25 @@ for k1, v1 in cardlist3_n.items():
 				cardlist6_n[l6.key] = l6.value
 			else:
 				cardlist6_n[l6.key] *= l6.value
+				if cardlist6_n[l6.key] >= 100:
+					cardlist6_n[l6.key] = 100
+				elif cardlist6_n[l6.key] > 0:
+					cardlist6_n[l6.key] = 1
+# 6张牌=>风
+cardlist6_f = {}
+for k1, v1 in cardlist3_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist3_f.items():
+		c2 = ListCard(k2, v2)
+		l6 = ListCard()
+		if l6.plus(c1, c2) == True:
+			if l6.key not in cardlist6_f:
+				cardlist6_f[l6.key] = l6.value
+			else:
+				cardlist6_f[l6.key] *= l6.value
+				if cardlist6_f[l6.key] > 0:
+					cardlist6_f[l6.key] = 1
+
 
 # 8张牌=>大
 cardlist8_a = {}
@@ -164,6 +219,10 @@ for k1, v1 in cardlist2_a.items():
 				cardlist8_a[l8.key] = l8.value
 			else:
 				cardlist8_a[l8.key] *= l8.value
+				if cardlist8_a[l8.key] >= 100:
+					cardlist8_a[l8.key] = 100
+				elif cardlist8_a[l8.key] > 0:
+					cardlist8_a[l8.key] = 1
 # 8张牌=>小
 cardlist8_b = {}
 for k1, v1 in cardlist2_b.items():
@@ -176,6 +235,23 @@ for k1, v1 in cardlist2_b.items():
 				cardlist8_b[l8.key] = l8.value
 			else:
 				cardlist8_b[l8.key] *= l8.value
+				if cardlist8_b[l8.key] > 0:
+					cardlist8_b[l8.key] = 1
+# 8张牌=>风
+cardlist8_f = {}
+for k1, v1 in cardlist2_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist6_f.items():
+		c2 = ListCard(k2, v2)
+		l8 = ListCard()
+		if l8.plus(c1, c2) == True:
+			if l8.key not in cardlist8_f:
+				cardlist8_f[l8.key] = l8.value
+			else:
+				cardlist8_f[l8.key] *= l8.value
+				if cardlist8_f[l8.key] > 0:
+					cardlist8_f[l8.key] = 1
+
 
 # 9张牌=>无
 cardlist9_n = {}
@@ -189,6 +265,24 @@ for k1, v1 in cardlist6_n.items():
 				cardlist9_n[l9.key] = l9.value
 			else:
 				cardlist9_n[l9.key] *= l9.value
+				if cardlist9_n[l9.key] >= 100:
+					cardlist9_n[l9.key] = 100
+				elif cardlist9_n[l9.key] > 0:
+					cardlist9_n[l9.key] = 1
+# 9张牌=>风
+cardlist9_f = {}
+for k1, v1 in cardlist6_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist3_f.items():
+		c2 = ListCard(k2, v2)
+		l9 = ListCard()
+		if l9.plus(c1, c2) == True:
+			if l9.key not in cardlist9_f:
+				cardlist9_f[l9.key] = l9.value
+			else:
+				cardlist9_f[l9.key] *= l9.value
+				if cardlist9_f[l9.key] > 0:
+					cardlist9_f[l9.key] = 1
 
 # 11张牌=>大
 cardlist11_a = {}
@@ -202,6 +296,10 @@ for k1, v1 in cardlist2_a.items():
 				cardlist11_a[l11.key] = l11.value
 			else:
 				cardlist11_a[l11.key] *= l11.value
+				if cardlist11_a[l11.key] >= 100:
+					cardlist11_a[l11.key] = 100
+				elif cardlist11_a[l11.key] > 0:
+					cardlist11_a[l11.key] = 1
 # 11张牌=>小
 cardlist11_b = {}
 for k1, v1 in cardlist2_b.items():
@@ -214,46 +312,99 @@ for k1, v1 in cardlist2_b.items():
 				cardlist11_b[l11.key] = l11.value
 			else:
 				cardlist11_b[l11.key] *= l11.value
-
-"""
-# 12张牌=>无
-card12list_n = {}
-for k1, v1 in card9list_n.items():
+				if cardlist11_b[l11.key] > 0:
+					cardlist11_b[l11.key] = 1
+# 11张牌=>风
+cardlist11_f = {}
+for k1, v1 in cardlist2_f.items():
 	c1 = ListCard(k1, v1)
-	for k2, v2 in card3list_n.items():
+	for k2, v2 in cardlist9_f.items():
+		c2 = ListCard(k2, v2)
+		l11 = ListCard()
+		if l11.plus(c1, c2) == True:
+			if l11.key not in cardlist11_f:
+				cardlist11_f[l11.key] = l11.value
+			else:
+				cardlist11_f[l11.key] *= l11.value
+				if cardlist11_f[l11.key] > 0:
+					cardlist11_f[l11.key] = 1
+
+#12张牌=>无
+cardlist12_n = {}
+for k1, v1 in cardlist9_n.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist3_n.items():
 		c2 = ListCard(k2, v2)
 		l12 = ListCard()
 		if l12.plus(c1, c2) == True:
-			if l12.key not in card12list_n:
-				card12list_n[l12.key] = l12.value
+			if l12.key not in cardlist12_n:
+				cardlist12_n[l12.key] = l12.value
 			else:
-				card12list_n[l12.key] *= l12.value
+				cardlist12_n[l12.key] *= l12.value
+				if cardlist12_n[l12.key] >= 100:
+					cardlist12_n[l12.key] = 100
+				elif cardlist12_n[l12.key] > 0:
+					cardlist12_n[l12.key] = 1
+#12张牌=>风
+cardlist12_f = {}
+for k1, v1 in cardlist9_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist3_f.items():
+		c2 = ListCard(k2, v2)
+		l12 = ListCard()
+		if l12.plus(c1, c2) == True:
+			if l12.key not in cardlist12_f:
+				cardlist12_f[l12.key] = l12.value
+			else:
+				cardlist12_f[l12.key] *= l12.value
+				if cardlist12_f[l12.key] > 0:
+					cardlist12_f[l12.key] = 1
 
 # 14张牌=>大
-card14list_a = {}
-for k1, v1 in card2list_a.items():
+cardlist14_a = {}
+for k1, v1 in cardlist2_a.items():
 	c1 = ListCard(k1, v1)
-	for k2, v2 in card12list_n.items():
+	for k2, v2 in cardlist12_n.items():
 		c2 = ListCard(k2, v2)
 		l14 = ListCard()
 		if l14.plus(c1, c2) == True:
-			if l14.key not in card14list_a:
-				card14list_a[l14.key] = l14.value
+			if l14.key not in cardlist14_a:
+				cardlist14_a[l14.key] = l14.value
 			else:
-				card14list_a[l14.key] *= l14.value
+				cardlist14_a[l14.key] *= l14.value
+				if cardlist14_a[l14.key] >= 100:
+					cardlist14_a[l14.key] = 100
+				elif cardlist14_a[l14.key] > 0:
+					cardlist14_a[l14.key] = 1
 # 14张牌=>小
-card14list_b = {}
-for k1, v1 in card2list_b.items():
+cardlist14_b = {}
+for k1, v1 in cardlist2_b.items():
 	c1 = ListCard(k1, v1)
-	for k2, v2 in card12list_n.items():
+	for k2, v2 in cardlist12_n.items():
 		c2 = ListCard(k2, v2)
 		l14 = ListCard()
 		if l14.plus(c1, c2) == True:
-			if l14.key not in card14list_b:
-				card14list_b[l14.key] = l14.value
+			if l14.key not in cardlist14_b:
+				cardlist14_b[l14.key] = l14.value
 			else:
-				card14list_b[l14.key] *= l14.value
-"""
+				cardlist14_b[l14.key] *= l14.value
+				if cardlist14_b[l14.key] > 0:
+					cardlist14_b[l14.key] = 1
+# 14张牌=>风
+cardlist14_f = {}
+for k1, v1 in cardlist2_f.items():
+	c1 = ListCard(k1, v1)
+	for k2, v2 in cardlist12_f.items():
+		c2 = ListCard(k2, v2)
+		l14 = ListCard()
+		if l14.plus(c1, c2) == True:
+			if l14.key not in cardlist14_f:
+				cardlist14_f[l14.key] = l14.value
+			else:
+				cardlist14_f[l14.key] *= l14.value
+				if cardlist14_f[l14.key] > 0:
+					cardlist14_f[l14.key] = 1
+
 
 
 laizi1 = {}
@@ -324,12 +475,36 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist1_a[l1.key] = c2.value
+			if l1.key in l1_cardlist1_a:
+				l1_cardlist1_a[l1.key] *= c2.value
+				if l1_cardlist1_a[l1.key] > 0:
+					l1_cardlist1_a[l1.key] = 1
+			else:
+				l1_cardlist1_a[l1.key] = c2.value
 	for ck, cv in cardlist2_b.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist1_b[l1.key] = c2.value
+			if l1.key in l1_cardlist1_b:
+				l1_cardlist1_b[l1.key] *= c2.value
+				if l1_cardlist1_b[l1.key] > 0:
+					l1_cardlist1_b[l1.key] = 1
+			else:
+				l1_cardlist1_b[l1.key] = c2.value
+# 2张牌=>风				===>			1赖子+1张牌=>风
+l1_cardlist1_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist2_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist1_f:
+				l1_cardlist1_f[l1.key] *= c2.value
+				if l1_cardlist1_f[l1.key] > 0:
+					l1_cardlist1_f[l1.key] = 1
+			else:
+				l1_cardlist1_f[l1.key] = c2.value
 
 # 3张牌=>无				===>			1赖子+2张牌=>无
 l1_cardlist2_n = {}
@@ -339,7 +514,12 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist2_n[l1.key] = c2.value
+			if l1.key in l1_cardlist2_n:
+				l1_cardlist2_n[l1.key] *= c2.value
+				if l1_cardlist2_n[l1.key] > 0:
+					l1_cardlist2_n[l1.key] = 1
+			else:
+				l1_cardlist2_n[l1.key] = c2.value
 # 3张牌=>无				===>			2赖子+1张牌=>无
 l2_cardlist1_n = {}
 for lk1, lv1 in laizi2.items():
@@ -348,7 +528,40 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist1_n[l2.key] = c2.value
+			if l2.key in l2_cardlist1_n:
+				l2_cardlist1_n[l2.key] *= c2.value
+				if l2_cardlist1_n[l2.key] > 0:
+					l2_cardlist1_n[l2.key] = 1
+			else:
+				l2_cardlist1_n[l2.key] = c2.value
+# 3张牌=>风				===>			1赖子+2张牌=>风
+l1_cardlist2_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist3_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist2_f:
+				l1_cardlist2_f[l1.key] *= c2.value
+				if l1_cardlist2_f[l1.key] > 0:
+					l1_cardlist2_f[l1.key] = 1
+			else:
+				l1_cardlist2_f[l1.key] = c2.value
+# 3张牌=>风				===>			2赖子+1张牌=>风
+l2_cardlist1_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist3_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist1_f:
+				l2_cardlist1_f[l2.key] *= c2.value
+				if l2_cardlist1_f[l2.key] > 0:
+					l2_cardlist1_f[l2.key] = 1
+			else:
+				l2_cardlist1_f[l2.key] = c2.value
 
 
 # 5张牌=>大				===>			1赖子+4张牌=>大
@@ -361,12 +574,22 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist4_a[l1.key] = c2.value
+			if l1.key in l1_cardlist4_a:
+				l1_cardlist4_a[l1.key] *= c2.value
+				if l1_cardlist4_a[l1.key] > 0:
+					l1_cardlist4_a[l1.key] = 1
+			else:
+				l1_cardlist4_a[l1.key] = c2.value
 	for ck, cv in cardlist5_b.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist4_b[l1.key] = c2.value
+			if l1.key in l1_cardlist4_b:
+				l1_cardlist4_b[l1.key] *= c2.value
+				if l1_cardlist4_b[l1.key] > 0:
+					l1_cardlist4_b[l1.key] = 1
+			else:
+				l1_cardlist4_b[l1.key] = c2.value
 # 5张牌=>大				===>			2赖子+3张牌=>大
 l2_cardlist3_a = {}
 # 5张牌=>小				===>			2赖子+3张牌=>小
@@ -377,12 +600,23 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist3_a[l2.key] = c2.value
+			if l2.key in l2_cardlist3_a:
+				l2_cardlist3_a[l2.key] *= c2.value
+				if l2_cardlist3_a[l2.key] > 0:
+					l2_cardlist3_a[l2.key] = 1
+			else:
+				l2_cardlist3_a[l2.key] = c2.value
 	for ck, cv in cardlist5_b.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist3_b[l2.key] = c2.value
+			if l2.key[1] != '0' or l2.key[4] != '0' or l2.key[7] != '0':
+				if l2.key in l2_cardlist3_b:
+					l2_cardlist3_b[l2.key] *= c2.value
+					if l2_cardlist3_b[l2.key] > 0:
+						l2_cardlist3_b[l2.key] = 1
+				else:
+					l2_cardlist3_b[l2.key] = c2.value
 # 5张牌=>大				===>			3赖子+2张牌=>大
 l3_cardlist2_a = {}
 # 5张牌=>小				===>			3赖子+2张牌=>小
@@ -393,12 +627,23 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist2_a[l3.key] = c2.value
+			if l3.key in l3_cardlist2_a:
+				l3_cardlist2_a[l3.key] *= c2.value
+				if l3_cardlist2_a[l3.key] > 0:
+					l3_cardlist2_a[l3.key] = 1
+			else:
+				l3_cardlist2_a[l3.key] = c2.value
 	for ck, cv in cardlist5_b.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist2_b[l3.key] = c2.value
+			if l3.key[1] != '0' or l3.key[4] != '0' or l3.key[7] != '0':
+				if l3.key in l3_cardlist2_b:
+					l3_cardlist2_b[l3.key] *= c2.value
+					if l3_cardlist2_b[l3.key] > 0:
+						l3_cardlist2_b[l3.key] = 1
+				else:
+					l3_cardlist2_b[l3.key] = c2.value
 # 5张牌=>大				===>			4赖子+1张牌=>大
 l4_cardlist1_a = {}
 # 5张牌=>小				===>			4赖子+1张牌=>小
@@ -409,13 +654,79 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist1_a[l4.key] = c2.value
+			if l4.key in l4_cardlist1_a:
+				l4_cardlist1_a[l4.key] *= c2.value
+				if l4_cardlist1_a[l4.key] > 0:
+					l4_cardlist1_a[l4.key] = 1
+			else:
+				l4_cardlist1_a[l4.key] = c2.value
 	for ck, cv in cardlist5_b.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist1_b[l4.key] = c2.value
-
+			if l4.key[1] != '0' or l4.key[4] != '0' or l4.key[7] != '0':
+				if l4.key in l4_cardlist1_b:
+					l4_cardlist1_b[l4.key] *= c2.value
+					if l4_cardlist1_b[l4.key] > 0:
+						l4_cardlist1_b[l4.key] = 1
+				else:
+					l4_cardlist1_b[l4.key] = c2.value
+# 5张牌=>风				===>			1赖子+4张牌=>风
+l1_cardlist4_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist5_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist4_f:
+				l1_cardlist4_f[l1.key] *= c2.value
+				if l1_cardlist4_f[l1.key] > 0:
+					l1_cardlist4_f[l1.key] = 1
+			else:
+				l1_cardlist4_f[l1.key] = c2.value
+# 5张牌=>风				===>			2赖子+3张牌=>风
+l2_cardlist3_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist5_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist3_f:
+				l2_cardlist3_f[l2.key] *= c2.value
+				if l2_cardlist3_f[l2.key] > 0:
+					l2_cardlist3_f[l2.key] = 1
+			else:
+				l2_cardlist3_f[l2.key] = c2.value
+# 5张牌=>风				===>			3赖子+2张牌=>风
+l3_cardlist2_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist5_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist2_f:
+				l3_cardlist2_f[l3.key] *= c2.value
+				if l3_cardlist2_f[l3.key] > 0:
+					l3_cardlist2_f[l3.key] = 1
+			else:
+				l3_cardlist2_f[l3.key] = c2.value
+# 5张牌=>风				===>			4赖子+1张牌=>风
+l4_cardlist1_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist5_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist1_f:
+				l4_cardlist1_f[l4.key] *= c2.value
+				if l4_cardlist1_f[l4.key] > 0:
+					l4_cardlist1_f[l4.key] = 1
+			else:
+				l4_cardlist1_f[l4.key] = c2.value
 
 # 6张牌=>无				===>			1赖子+5张牌=>无
 l1_cardlist5_n = {}
@@ -425,7 +736,12 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist5_n[l1.key] = c2.value
+			if l1.key in l1_cardlist5_n:
+				l1_cardlist5_n[l1.key] *= c2.value
+				if l1_cardlist5_n[l1.key] > 0:
+					l1_cardlist5_n[l1.key] = 1
+			else:
+				l1_cardlist5_n[l1.key] = c2.value
 # 6张牌=>无				===>			2赖子+4张牌=>无
 l2_cardlist4_n = {}
 for lk1, lv1 in laizi2.items():
@@ -434,7 +750,12 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist4_n[l2.key] = c2.value
+			if l2.key in l2_cardlist4_n:
+				l2_cardlist4_n[l2.key] *= c2.value
+				if l2_cardlist4_n[l2.key] > 0:
+					l2_cardlist4_n[l2.key] = 1
+			else:
+				l2_cardlist4_n[l2.key] = c2.value
 # 6张牌=>无				===>			3赖子+3张牌=>无
 l3_cardlist3_n = {}
 for lk1, lv1 in laizi3.items():
@@ -443,7 +764,12 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist3_n[l3.key] = c2.value
+			if l3.key in l3_cardlist3_n:
+				l3_cardlist3_n[l3.key] *= c2.value
+				if l3_cardlist3_n[l3.key] > 0:
+					l3_cardlist3_n[l3.key] = 1
+			else:
+				l3_cardlist3_n[l3.key] = c2.value
 # 6张牌=>无				===>			4赖子+2张牌=>无
 l4_cardlist2_n = {}
 for lk1, lv1 in laizi4.items():
@@ -452,8 +778,68 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist2_n[l4.key] = c2.value
-
+			if l4.key in l4_cardlist2_n:
+				l4_cardlist2_n[l4.key] *= c2.value
+				if l4_cardlist2_n[l4.key] > 0:
+					l4_cardlist2_n[l4.key] = 1
+			else:
+				l4_cardlist2_n[l4.key] = c2.value
+# 6张牌=>风				===>			1赖子+5张牌=>风
+l1_cardlist5_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist6_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist5_f:
+				l1_cardlist5_f[l1.key] *= c2.value
+				if l1_cardlist5_f[l1.key] > 0:
+					l1_cardlist5_f[l1.key] = 1
+			else:
+				l1_cardlist5_f[l1.key] = c2.value
+# 6张牌=>风				===>			2赖子+4张牌=>风
+l2_cardlist4_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist6_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist4_f:
+				l2_cardlist4_f[l2.key] *= c2.value
+				if l2_cardlist4_f[l2.key] > 0:
+					l2_cardlist4_f[l2.key] = 1
+			else:
+				l2_cardlist4_f[l2.key] = c2.value
+# 6张牌=>风				===>			3赖子+3张牌=>风
+l3_cardlist3_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist6_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist3_f:
+				l3_cardlist3_f[l3.key] *= c2.value
+				if l3_cardlist3_f[l3.key] > 0:
+					l3_cardlist3_f[l3.key] = 1
+			else:
+				l3_cardlist3_f[l3.key] = c2.value
+# 6张牌=>风				===>			4赖子+2张牌=>风
+l4_cardlist2_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist6_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist2_f:
+				l4_cardlist2_f[l4.key] *= c2.value
+				if l4_cardlist2_f[l4.key] > 0:
+					l4_cardlist2_f[l4.key] = 1
+			else:
+				l4_cardlist2_f[l4.key] = c2.value
 
 # 8张牌=>大				===>			1赖子+7张牌=>大
 l1_cardlist7_a = {}
@@ -465,12 +851,22 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist7_a[l1.key] = c2.value
+			if l1.key in l1_cardlist7_a:
+				l1_cardlist7_a[l1.key] *= c2.value
+				if l1_cardlist7_a[l1.key] > 0:
+					l1_cardlist7_a[l1.key] = 1
+			else:
+				l1_cardlist7_a[l1.key] = c2.value
 	for ck, cv in cardlist8_b.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist7_b[l1.key] = c2.value
+			if l1.key in l1_cardlist7_b:
+				l1_cardlist7_b[l1.key] *= c2.value
+				if l1_cardlist7_b[l1.key] > 0:
+					l1_cardlist7_b[l1.key] = 1
+			else:
+				l1_cardlist7_b[l1.key] = c2.value
 # 8张牌=>大				===>			2赖子+6张牌=>大
 l2_cardlist6_a = {}
 # 8张牌=>小				===>			2赖子+6张牌=>小
@@ -481,12 +877,23 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist6_a[l2.key] = c2.value
+			if l2.key in l2_cardlist6_a:
+				l2_cardlist6_a[l2.key] *= c2.value
+				if l2_cardlist6_a[l2.key] > 0:
+					l2_cardlist6_a[l2.key] = 1
+			else:
+				l2_cardlist6_a[l2.key] = c2.value
 	for ck, cv in cardlist8_b.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist6_b[l2.key] = c2.value
+			if l2.key[1] != '0' or l2.key[4] != '0' or l2.key[7] != '0':
+				if l2.key in l2_cardlist6_b:
+					l2_cardlist6_b[l2.key] *= c2.value
+					if l2_cardlist6_b[l2.key] > 0:
+						l2_cardlist6_b[l2.key] = 1
+				else:
+					l2_cardlist6_b[l2.key] = c2.value
 # 8张牌=>大				===>			3赖子+5张牌=>大
 l3_cardlist5_a = {}
 # 8张牌=>小				===>			3赖子+5张牌=>小
@@ -497,12 +904,23 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist5_a[l3.key] = c2.value
+			if l3.key in l3_cardlist5_a:
+				l3_cardlist5_a[l3.key] *= c2.value
+				if l3_cardlist5_a[l3.key] > 0:
+					l3_cardlist5_a[l3.key] = 1
+			else:
+				l3_cardlist5_a[l3.key] = c2.value
 	for ck, cv in cardlist8_b.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist5_b[l3.key] = c2.value
+			if l3.key[1] != '0' or l3.key[4] != '0' or l3.key[7] != '0':
+				if l3.key in l3_cardlist5_b:
+					l3_cardlist5_b[l3.key] *= c2.value
+					if l3_cardlist5_b[l3.key] > 0:
+						l3_cardlist5_b[l3.key] = 1
+				else:
+					l3_cardlist5_b[l3.key] = c2.value
 # 8张牌=>大				===>			4赖子+4张牌=>大
 l4_cardlist4_a = {}
 # 8张牌=>小				===>			4赖子+4张牌=>小
@@ -513,13 +931,79 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist4_a[l4.key] = c2.value
+			if l4.key in l4_cardlist4_a:
+				l4_cardlist4_a[l4.key] *= c2.value
+				if l4_cardlist4_a[l4.key] > 0:
+					l4_cardlist4_a[l4.key] = 1
+			else:
+				l4_cardlist4_a[l4.key] = c2.value
 	for ck, cv in cardlist8_b.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist4_b[l4.key] = c2.value
-
+			if l4.key[1] != '0' or l4.key[4] != '0' or l4.key[7] != '0':
+				if l4.key in l4_cardlist4_b:
+					l4_cardlist4_b[l4.key] *= c2.value
+					if l4_cardlist4_b[l4.key] > 0:
+						l4_cardlist4_b[l4.key] = 1
+				else:
+					l4_cardlist4_b[l4.key] = c2.value
+# 8张牌=>风				===>			1赖子+7张牌=>风
+l1_cardlist7_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist8_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist7_f:
+				l1_cardlist7_f[l1.key] *= c2.value
+				if l1_cardlist7_f[l1.key] > 0:
+					l1_cardlist7_f[l1.key] = 1
+			else:
+				l1_cardlist7_f[l1.key] = c2.value
+# 8张牌=>风				===>			2赖子+6张牌=>风
+l2_cardlist6_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist8_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist6_f:
+				l2_cardlist6_f[l2.key] *= c2.value
+				if l2_cardlist6_f[l2.key] > 0:
+					l2_cardlist6_f[l2.key] = 1
+			else:
+				l2_cardlist6_f[l2.key] = c2.value
+# 8张牌=>风				===>			3赖子+5张牌=>风
+l3_cardlist5_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist8_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist5_f:
+				l3_cardlist5_f[l3.key] *= c2.value
+				if l3_cardlist5_f[l3.key] > 0:
+					l3_cardlist5_f[l3.key] = 1
+			else:
+				l3_cardlist5_f[l3.key] = c2.value
+# 8张牌=>风				===>			4赖子+4张牌=>风
+l4_cardlist4_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist8_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist4_f:
+				l4_cardlist4_f[l4.key] *= c2.value
+				if l4_cardlist4_f[l4.key] > 0:
+					l4_cardlist4_f[l4.key] = 1
+			else:
+				l4_cardlist4_f[l4.key] = c2.value
 
 # 9张牌=>无				===>			1赖子+8张牌=>无
 l1_cardlist8_n = {}
@@ -529,7 +1013,12 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist8_n[l1.key] = c2.value
+			if l1.key in l1_cardlist8_n:
+				l1_cardlist8_n[l1.key] *= c2.value
+				if l1_cardlist8_n[l1.key] > 0:
+					l1_cardlist8_n[l1.key] = 1
+			else:
+				l1_cardlist8_n[l1.key] = c2.value
 # 9张牌=>无				===>			2赖子+7张牌=>无
 l2_cardlist7_n = {}
 for lk1, lv1 in laizi2.items():
@@ -538,7 +1027,12 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist7_n[l2.key] = c2.value
+			if l2.key in l2_cardlist7_n:
+				l2_cardlist7_n[l2.key] *= c2.value
+				if l2_cardlist7_n[l2.key] > 0:
+					l2_cardlist7_n[l2.key] = 1
+			else:
+				l2_cardlist7_n[l2.key] = c2.value
 # 9张牌=>无				===>			3赖子+6张牌=>无
 l3_cardlist6_n = {}
 for lk1, lv1 in laizi3.items():
@@ -547,7 +1041,12 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist6_n[l3.key] = c2.value
+			if l3.key in l3_cardlist6_n:
+				l3_cardlist6_n[l3.key] *= c2.value
+				if l3_cardlist6_n[l3.key] > 0:
+					l3_cardlist6_n[l3.key] = 1
+			else:
+				l3_cardlist6_n[l3.key] = c2.value
 # 9张牌=>无				===>			4赖子+5张牌=>无
 l4_cardlist5_n = {}
 for lk1, lv1 in laizi4.items():
@@ -556,8 +1055,68 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist5_n[l4.key] = c2.value
-
+			if l4.key in l4_cardlist5_n:
+				l4_cardlist5_n[l4.key] *= c2.value
+				if l4_cardlist5_n[l4.key] > 0:
+					l4_cardlist5_n[l4.key] = 1
+			else:
+				l4_cardlist5_n[l4.key] = c2.value
+# 9张牌=>风				===>			1赖子+8张牌=>风
+l1_cardlist8_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist9_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist8_f:
+				l1_cardlist8_f[l1.key] *= c2.value
+				if l1_cardlist8_f[l1.key] > 0:
+					l1_cardlist8_f[l1.key] = 1
+			else:
+				l1_cardlist8_f[l1.key] = c2.value
+# 9张牌=>风				===>			2赖子+7张牌=>风
+l2_cardlist7_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist9_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist7_f:
+				l2_cardlist7_f[l2.key] *= c2.value
+				if l2_cardlist7_f[l2.key] > 0:
+					l2_cardlist7_f[l2.key] = 1
+			else:
+				l2_cardlist7_f[l2.key] = c2.value
+# 9张牌=>风				===>			3赖子+6张牌=>风
+l3_cardlist6_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist9_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist6_f:
+				l3_cardlist6_f[l3.key] *= c2.value
+				if l3_cardlist6_f[l3.key] > 0:
+					l3_cardlist6_f[l3.key] = 1
+			else:
+				l3_cardlist6_f[l3.key] = c2.value
+# 9张牌=>风				===>			4赖子+5张牌=>风
+l4_cardlist5_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist9_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist5_f:
+				l4_cardlist5_f[l4.key] *= c2.value
+				if l4_cardlist5_f[l4.key] > 0:
+					l4_cardlist5_f[l4.key] = 1
+			else:
+				l4_cardlist5_f[l4.key] = c2.value
 
 # 11张牌=>大			===>			1赖子+10张牌=>大
 l1_cardlist10_a = {}
@@ -569,12 +1128,22 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist10_a[l1.key] = c2.value
+			if l1.key in l1_cardlist10_a:
+				l1_cardlist10_a[l1.key] *= c2.value
+				if l1_cardlist10_a[l1.key] > 0:
+					l1_cardlist10_a[l1.key] = 1
+			else:
+				l1_cardlist10_a[l1.key] = c2.value
 	for ck, cv in cardlist11_b.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist10_b[l1.key] = c2.value
+			if l1.key in l1_cardlist10_b:
+				l1_cardlist10_b[l1.key] *= c2.value
+				if l1_cardlist10_b[l1.key] > 0:
+					l1_cardlist10_b[l1.key] = 1
+			else:
+				l1_cardlist10_b[l1.key] = c2.value
 # 11张牌=>大			===>			2赖子+9张牌=>大
 l2_cardlist9_a = {}
 # 11张牌=>小			===>			2赖子+9张牌=>小
@@ -585,12 +1154,23 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist9_a[l2.key] = c2.value
+			if l2.key in l2_cardlist9_a:
+				l2_cardlist9_a[l2.key] *= c2.value
+				if l2_cardlist9_a[l2.key] > 0:
+					l2_cardlist9_a[l2.key] = 1
+			else:
+				l2_cardlist9_a[l2.key] = c2.value
 	for ck, cv in cardlist11_b.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist9_b[l2.key] = c2.value
+			if l2.key[1] != '0' or l2.key[4] != '0' or l2.key[7] != '0':
+				if l2.key in l2_cardlist9_b:
+					l2_cardlist9_b[l2.key] *= c2.value
+					if l2_cardlist9_b[l2.key] > 0:
+						l2_cardlist9_b[l2.key] = 1
+				else:
+					l2_cardlist9_b[l2.key] = c2.value
 # 11张牌=>大			===>			3赖子+8张牌=>大
 l3_cardlist8_a = {}
 # 11张牌=>小			===>			3赖子+8张牌=>小
@@ -601,12 +1181,23 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist8_a[l3.key] = c2.value
+			if l3.key in l3_cardlist8_a:
+				l3_cardlist8_a[l3.key] *= c2.value
+				if l3_cardlist8_a[l3.key] > 0:
+					l3_cardlist8_a[l3.key] = 1
+			else:
+				l3_cardlist8_a[l3.key] = c2.value
 	for ck, cv in cardlist11_b.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist8_b[l3.key] = c2.value
+			if l3.key[1] != '0' or l3.key[4] != '0' or l3.key[7] != '0':
+				if l3.key in l3_cardlist8_b:
+					l3_cardlist8_b[l3.key] *= c2.value
+					if l3_cardlist8_b[l3.key] > 0:
+						l3_cardlist8_b[l3.key] = 1
+				else:
+					l3_cardlist8_b[l3.key] = c2.value
 # 11张牌=>大			===>			4赖子+7张牌=>大
 l4_cardlist7_a = {}
 # 11张牌=>小			===>			4赖子+7张牌=>小
@@ -617,15 +1208,80 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist7_a[l4.key] = c2.value
+			if l4.key in l4_cardlist7_a:
+				l4_cardlist7_a[l4.key] *= c2.value
+				if l4_cardlist7_a[l4.key] > 0:
+					l4_cardlist7_a[l4.key] = 1
+			else:
+				l4_cardlist7_a[l4.key] = c2.value
 	for ck, cv in cardlist11_b.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist7_b[l4.key] = c2.value
+			if l4.key[1] != '0' or l4.key[4] != '0' or l4.key[7] != '0':
+				if l4.key in l4_cardlist7_b:
+					l4_cardlist7_b[l4.key] *= c2.value
+					if l4_cardlist7_b[l4.key] > 0:
+						l4_cardlist7_b[l4.key] = 1
+				else:
+					l4_cardlist7_b[l4.key] = c2.value
+# 11张牌=>风			===>			1赖子+10张牌=>风
+l1_cardlist10_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist11_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist10_f:
+				l1_cardlist10_f[l1.key] *= c2.value
+				if l1_cardlist10_f[l1.key] > 0:
+					l1_cardlist10_f[l1.key] = 1
+			else:
+				l1_cardlist10_f[l1.key] = c2.value
+# 11张牌=>风			===>			2赖子+9张牌=>风
+l2_cardlist9_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist11_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist9_f:
+				l2_cardlist9_f[l2.key] *= c2.value
+				if l2_cardlist9_f[l2.key] > 0:
+					l2_cardlist9_f[l2.key] = 1
+			else:
+				l2_cardlist9_f[l2.key] = c2.value
+# 11张牌=>风			===>			3赖子+8张牌=>风
+l3_cardlist8_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist11_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist8_f:
+				l3_cardlist8_f[l3.key] *= c2.value
+				if l3_cardlist8_f[l3.key] > 0:
+					l3_cardlist8_f[l3.key] = 1
+			else:
+				l3_cardlist8_f[l3.key] = c2.value
+# 11张牌=>风			===>			4赖子+7张牌=>风
+l4_cardlist7_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist11_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist7_f:
+				l4_cardlist7_f[l4.key] *= c2.value
+				if l4_cardlist7_f[l4.key] > 0:
+					l4_cardlist7_f[l4.key] = 1
+			else:
+				l4_cardlist7_f[l4.key] = c2.value
 
-
-"""
 # 12张牌=>无			===>			1赖子+11张牌=>无
 l1_cardlist11_n = {}
 for lk1, lv1 in laizi1.items():
@@ -634,7 +1290,12 @@ for lk1, lv1 in laizi1.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist11_n[l1.key] = c2.value
+			if l1.key in l1_cardlist11_n:
+				l1_cardlist11_n[l1.key] *= c2.value
+				if l1_cardlist11_n[l1.key] > 0:
+					l1_cardlist11_n[l1.key] = 1
+			else:
+				l1_cardlist11_n[l1.key] = c2.value
 # 12张牌=>无			===>			2赖子+10张牌=>无
 l2_cardlist10_n = {}
 for lk1, lv1 in laizi2.items():
@@ -643,7 +1304,12 @@ for lk1, lv1 in laizi2.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist10_n[l2.key] = c2.value
+			if l2.key in l2_cardlist10_n:
+				l2_cardlist10_n[l2.key] *= c2.value
+				if l2_cardlist10_n[l2.key] > 0:
+					l2_cardlist10_n[l2.key] = 1
+			else:
+				l2_cardlist10_n[l2.key] = c2.value
 # 12张牌=>无			===>			3赖子+9张牌=>无
 l3_cardlist9_n = {}
 for lk1, lv1 in laizi3.items():
@@ -652,7 +1318,12 @@ for lk1, lv1 in laizi3.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist9_n[l3.key] = c2.value
+			if l3.key in l3_cardlist9_n:
+				l3_cardlist9_n[l3.key] *= c2.value
+				if l3_cardlist9_n[l3.key] > 0:
+					l3_cardlist9_n[l3.key] = 1
+			else:
+				l3_cardlist9_n[l3.key] = c2.value
 # 12张牌=>无			===>			4赖子+8张牌=>无
 l4_cardlist8_n = {}
 for lk1, lv1 in laizi4.items():
@@ -661,92 +1332,266 @@ for lk1, lv1 in laizi4.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist8_n[l4.key] = c2.value
+			if l4.key in l4_cardlist8_n:
+				l4_cardlist8_n[l4.key] *= c2.value
+				if l4_cardlist8_n[l4.key] > 0:
+					l4_cardlist8_n[l4.key] = 1
+			else:
+				l4_cardlist8_n[l4.key] = c2.value
+# 12张牌=>风			===>			1赖子+11张牌=>风
+l1_cardlist11_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist12_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist11_f:
+				l1_cardlist11_f[l1.key] *= c2.value
+				if l1_cardlist11_f[l1.key] > 0:
+					l1_cardlist11_f[l1.key] = 1
+			else:
+				l1_cardlist11_f[l1.key] = c2.value
+# 12张牌=>风			===>			2赖子+10张牌=>风
+l2_cardlist10_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist12_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist10_f:
+				l2_cardlist10_f[l2.key] *= c2.value
+				if l2_cardlist10_f[l2.key] > 0:
+					l2_cardlist10_f[l2.key] = 1
+			else:
+				l2_cardlist10_f[l2.key] = c2.value
+# 12张牌=>风			===>			3赖子+9张牌=>风
+l3_cardlist9_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist12_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist9_f:
+				l3_cardlist9_f[l3.key] *= c2.value
+				if l3_cardlist9_f[l3.key] > 0:
+					l3_cardlist9_f[l3.key] = 1
+			else:
+				l3_cardlist9_f[l3.key] = c2.value
+# 12张牌=>风			===>			4赖子+8张牌=>风
+l4_cardlist8_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist12_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist8_f:
+				l4_cardlist8_f[l4.key] *= c2.value
+				if l4_cardlist8_f[l4.key] > 0:
+					l4_cardlist8_f[l4.key] = 1
+			else:
+				l4_cardlist8_f[l4.key] = c2.value
 
-
-# 14张牌=>大			===>			1赖子+11张牌=>大
-l1_cardlist11_a = {}
-# 14张牌=>小			===>			1赖子+11张牌=>小
-l1_cardlist11_b = {}
+# 14张牌=>大			===>			1赖子+13张牌=>大
+l1_cardlist13_a = {}
+# 14张牌=>小			===>			1赖子+13张牌=>小
+l1_cardlist13_b = {}
 for lk1, lv1 in laizi1.items():
 	c1 = ListCard(lk1, lv1)
 	for ck, cv in cardlist14_a.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist11_a[l1.key] = c2.value
+			if l1.key in l1_cardlist13_a:
+				l1_cardlist13_a[l1.key] *= c2.value
+				if l1_cardlist13_a[l1.key] > 0:
+					l1_cardlist13_a[l1.key] = 1
+			else:
+				l1_cardlist13_a[l1.key] = c2.value
 	for ck, cv in cardlist14_b.items():
 		c2 = ListCard(ck, cv)
 		l1 = ListCard()
 		if l1.minus(c2, c1) == True:
-			l1_cardlist11_b[l1.key] = c2.value
-# 11张牌=>大			===>			2赖子+10张牌=>大
-l2_cardlist10_a = {}
-# 11张牌=>小			===>			2赖子+10张牌=>小
-l2_cardlist10_b = {}
+			if l1.key in l1_cardlist13_b:
+				l1_cardlist13_b[l1.key] *= c2.value
+				if l1_cardlist13_b[l1.key] > 0:
+					l1_cardlist13_b[l1.key] = 1
+			else:
+				l1_cardlist13_b[l1.key] = c2.value
+# 14张牌=>大			===>			2赖子+12张牌=>大
+l2_cardlist12_a = {}
+# 14张牌=>小			===>			2赖子+12张牌=>小
+l2_cardlist12_b = {}
 for lk1, lv1 in laizi2.items():
 	c1 = ListCard(lk1, lv1)
 	for ck, cv in cardlist14_a.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist10_a[l2.key] = c2.value
+			if l2.key in l2_cardlist12_a:
+				l2_cardlist12_a[l2.key] *= c2.value
+				if l2_cardlist12_a[l2.key] > 0:
+					l2_cardlist12_a[l2.key] = 1
+			else:
+				l2_cardlist12_a[l2.key] = c2.value
 	for ck, cv in cardlist14_b.items():
 		c2 = ListCard(ck, cv)
 		l2 = ListCard()
 		if l2.minus(c2, c1) == True:
-			l2_cardlist10_b[l2.key] = c2.value
-# 11张牌=>大			===>			3赖子+9张牌=>大
-l3_cardlist9_a = {}
-# 11张牌=>小			===>			3赖子+9张牌=>小
-l3_cardlist9_b = {}
+			if l2.key[1] != '0' or l2.key[4] != '0' or l2.key[7] != '0':
+				if l2.key in l2_cardlist12_b:
+					l2_cardlist12_b[l2.key] *= c2.value
+					if l2_cardlist12_b[l2.key] > 0:
+						l2_cardlist12_b[l2.key] = 1
+				else:
+					l2_cardlist12_b[l2.key] = c2.value
+# 14张牌=>大			===>			3赖子+11张牌=>大
+l3_cardlist11_a = {}
+# 14张牌=>小			===>			3赖子+11张牌=>小
+l3_cardlist11_b = {}
 for lk1, lv1 in laizi3.items():
 	c1 = ListCard(lk1, lv1)
 	for ck, cv in cardlist14_a.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist9_a[l3.key] = c2.value
+			if l3.key in l3_cardlist11_a:
+				l3_cardlist11_a[l3.key] *= c2.value
+				if l3_cardlist11_a[l3.key] > 0:
+					l3_cardlist11_a[l3.key] = 1
+			else:
+				l3_cardlist11_a[l3.key] = c2.value
 	for ck, cv in cardlist14_b.items():
 		c2 = ListCard(ck, cv)
 		l3 = ListCard()
 		if l3.minus(c2, c1) == True:
-			l3_cardlist9_b[l3.key] = c2.value
-# 11张牌=>大			===>			4赖子+8张牌=>大
-l4_cardlist8_a = {}
-# 11张牌=>小			===>			4赖子+8张牌=>小
-l4_cardlist8_b = {}
+			if l3.key[1] != '0' or l3.key[4] != '0' or l3.key[7] != '0':
+				if l3.key in l3_cardlist11_b:
+					l3_cardlist11_b[l3.key] *= c2.value
+					if l3_cardlist11_b[l3.key] > 0:
+						l3_cardlist11_b[l3.key] = 1
+				else:
+					l3_cardlist11_b[l3.key] = c2.value
+# 14张牌=>大			===>			4赖子+10张牌=>大
+l4_cardlist10_a = {}
+# 14张牌=>小			===>			4赖子+10张牌=>小
+l4_cardlist10_b = {}
 for lk1, lv1 in laizi4.items():
 	c1 = ListCard(lk1, lv1)
 	for ck, cv in cardlist14_a.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist8_a[l4.key] = c2.value
+			if l4.key in l4_cardlist10_a:
+				l4_cardlist10_a[l4.key] *= c2.value
+				if l4_cardlist10_a[l4.key] > 0:
+					l4_cardlist10_a[l4.key] = 1
+			else:
+				l4_cardlist10_a[l4.key] = c2.value
 	for ck, cv in cardlist14_b.items():
 		c2 = ListCard(ck, cv)
 		l4 = ListCard()
 		if l4.minus(c2, c1) == True:
-			l4_cardlist8_b[l4.key] = c2.value
-"""
+			if l4.key[1] != '0' or l4.key[4] != '0' or l4.key[7] != '0':
+				if l4.key in l4_cardlist10_b:
+					l4_cardlist10_b[l4.key] *= c2.value
+					if l4_cardlist10_b[l4.key] > 0:
+						l4_cardlist10_b[l4.key] = 1
+				else:
+					l4_cardlist10_b[l4.key] = c2.value
+# 14张牌=>风			===>			1赖子+13张牌=>风
+l1_cardlist13_f = {}
+for lk1, lv1 in laizi1.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist14_f.items():
+		c2 = ListCard(ck, cv)
+		l1 = ListCard()
+		if l1.minus(c2, c1) == True:
+			if l1.key in l1_cardlist13_f:
+				l1_cardlist13_f[l1.key] *= c2.value
+				if l1_cardlist13_f[l1.key] > 0:
+					l1_cardlist13_f[l1.key] = 1
+			else:
+				l1_cardlist13_f[l1.key] = c2.value
+# 14张牌=>风			===>			2赖子+12张牌=>风
+l2_cardlist12_f = {}
+for lk1, lv1 in laizi2.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist14_f.items():
+		c2 = ListCard(ck, cv)
+		l2 = ListCard()
+		if l2.minus(c2, c1) == True:
+			if l2.key in l2_cardlist12_f:
+				l2_cardlist12_f[l2.key] *= c2.value
+				if l2_cardlist12_f[l2.key] > 0:
+					l2_cardlist12_f[l2.key] = 1
+			else:
+				l2_cardlist12_f[l2.key] = c2.value
+# 14张牌=>风			===>			3赖子+11张牌=>风
+l3_cardlist11_f = {}
+for lk1, lv1 in laizi3.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist14_f.items():
+		c2 = ListCard(ck, cv)
+		l3 = ListCard()
+		if l3.minus(c2, c1) == True:
+			if l3.key in l3_cardlist11_f:
+				l3_cardlist11_f[l3.key] *= c2.value
+				if l3_cardlist11_f[l3.key] > 0:
+					l3_cardlist11_f[l3.key] = 1
+			else:
+				l3_cardlist11_f[l3.key] = c2.value
+# 14张牌=>风			===>			4赖子+10张牌=>风
+l4_cardlist10_f = {}
+for lk1, lv1 in laizi4.items():
+	c1 = ListCard(lk1, lv1)
+	for ck, cv in cardlist14_f.items():
+		c2 = ListCard(ck, cv)
+		l4 = ListCard()
+		if l4.minus(c2, c1) == True:
+			if l4.key in l4_cardlist10_f:
+				l4_cardlist10_f[l4.key] *= c2.value
+				if l4_cardlist10_f[l4.key] > 0:
+					l4_cardlist10_f[l4.key] = 1
+			else:
+				l4_cardlist10_f[l4.key] = c2.value
+
 
 claizi0[2]['a'] = cardlist2_a
 claizi0[2]['b'] = cardlist2_b
+claizi0[2]['f'] = cardlist2_f
 claizi0[3]['n'] = cardlist3_n
+claizi0[3]['f'] = cardlist3_f
 claizi0[5]['a'] = cardlist5_a
 claizi0[5]['b'] = cardlist5_b
+claizi0[5]['f'] = cardlist5_f
 claizi0[6]['n'] = cardlist6_n
+claizi0[6]['f'] = cardlist6_f
 claizi0[8]['a'] = cardlist8_a
 claizi0[8]['b'] = cardlist8_b
+claizi0[8]['f'] = cardlist8_f
 claizi0[9]['n'] = cardlist9_n
+claizi0[9]['f'] = cardlist9_f
 claizi0[11]['a'] = cardlist11_a
 claizi0[11]['b'] = cardlist11_b
+claizi0[11]['f'] = cardlist11_f
+claizi0[12]['n'] = cardlist12_n
+claizi0[12]['f'] = cardlist12_f
+claizi0[14]['a'] = cardlist14_a
+claizi0[14]['b'] = cardlist14_b
+claizi0[14]['f'] = cardlist14_f
 
 claizi1[1]['a'] = l1_cardlist1_a
 claizi1[1]['b'] = l1_cardlist1_b
+claizi1[1]['f'] = l1_cardlist1_f
 
 claizi1[2]['n'] = l1_cardlist2_n
 claizi2[1]['n'] = l2_cardlist1_n
+claizi1[2]['f'] = l1_cardlist2_f
+claizi2[1]['f'] = l2_cardlist1_f
 
 claizi1[4]['a'] = l1_cardlist4_a
 claizi1[4]['b'] = l1_cardlist4_b
@@ -756,11 +1601,19 @@ claizi3[2]['a'] = l3_cardlist2_a
 claizi3[2]['b'] = l3_cardlist2_b
 claizi4[1]['a'] = l4_cardlist1_a
 claizi4[1]['b'] = l4_cardlist1_b
+claizi1[4]['f'] = l1_cardlist4_f
+claizi2[3]['f'] = l2_cardlist3_f
+claizi3[2]['f'] = l3_cardlist2_f
+claizi4[1]['f'] = l4_cardlist1_f
 
 claizi1[5]['n'] = l1_cardlist5_n
 claizi2[4]['n'] = l2_cardlist4_n
-claizi2[3]['n'] = l3_cardlist3_n
-claizi2[2]['n'] = l4_cardlist2_n
+claizi3[3]['n'] = l3_cardlist3_n
+claizi4[2]['n'] = l4_cardlist2_n
+claizi1[5]['f'] = l1_cardlist5_f
+claizi2[4]['f'] = l2_cardlist4_f
+claizi3[3]['f'] = l3_cardlist3_f
+claizi4[2]['f'] = l4_cardlist2_f
 
 claizi1[7]['a'] = l1_cardlist7_a
 claizi1[7]['b'] = l1_cardlist7_b
@@ -770,11 +1623,19 @@ claizi3[5]['a'] = l3_cardlist5_a
 claizi3[5]['b'] = l3_cardlist5_b
 claizi4[4]['a'] = l4_cardlist4_a
 claizi4[4]['b'] = l4_cardlist4_b
+claizi1[7]['f'] = l1_cardlist7_f
+claizi2[6]['f'] = l2_cardlist6_f
+claizi3[5]['f'] = l3_cardlist5_f
+claizi4[4]['f'] = l4_cardlist4_f
 
 claizi1[8]['n'] = l1_cardlist8_n
 claizi2[7]['n'] = l2_cardlist7_n
-claizi2[6]['n'] = l3_cardlist6_n
-claizi2[5]['n'] = l4_cardlist5_n
+claizi3[6]['n'] = l3_cardlist6_n
+claizi4[5]['n'] = l4_cardlist5_n
+claizi1[8]['f'] = l1_cardlist8_f
+claizi2[7]['f'] = l2_cardlist7_f
+claizi3[6]['f'] = l3_cardlist6_f
+claizi4[5]['f'] = l4_cardlist5_f
 
 claizi1[10]['a'] = l1_cardlist10_a
 claizi1[10]['b'] = l1_cardlist10_b
@@ -784,6 +1645,33 @@ claizi3[8]['a'] = l3_cardlist8_a
 claizi3[8]['b'] = l3_cardlist8_b
 claizi4[7]['a'] = l4_cardlist7_a
 claizi4[7]['b'] = l4_cardlist7_b
+claizi1[10]['f'] = l1_cardlist10_f
+claizi2[9]['f'] = l2_cardlist9_f
+claizi3[8]['f'] = l3_cardlist8_f
+claizi4[7]['f'] = l4_cardlist7_f
+
+claizi1[11]['n'] = l1_cardlist11_n
+claizi2[10]['n'] = l2_cardlist10_n
+claizi3[9]['n'] = l3_cardlist9_n
+claizi4[8]['n'] = l4_cardlist8_n
+claizi1[11]['f'] = l1_cardlist11_f
+claizi2[10]['f'] = l2_cardlist10_f
+claizi3[9]['f'] = l3_cardlist9_f
+claizi4[8]['f'] = l4_cardlist8_f
+
+claizi1[13]['a'] = l1_cardlist13_a
+claizi1[13]['b'] = l1_cardlist13_b
+claizi2[12]['a'] = l2_cardlist12_a
+claizi2[12]['b'] = l2_cardlist12_b
+claizi3[11]['a'] = l3_cardlist11_a
+claizi3[11]['b'] = l3_cardlist11_b
+claizi4[10]['a'] = l4_cardlist10_a
+claizi4[10]['b'] = l4_cardlist10_b
+claizi1[13]['f'] = l1_cardlist13_f
+claizi2[12]['f'] = l2_cardlist12_f
+claizi3[11]['f'] = l3_cardlist11_f
+claizi4[10]['f'] = l4_cardlist10_f
+
 
 data = {}
 data[0] = claizi0
